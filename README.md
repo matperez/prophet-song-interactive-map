@@ -45,3 +45,20 @@ npm run build
 ```
 
 Собранные файлы будут в директории `dist/`.
+
+## Деплой на GitHub Pages
+
+Проект автоматически деплоится на GitHub Pages при каждом push в ветку `main` через GitHub Actions.
+
+### Настройка (один раз)
+
+1. Перейдите в настройки репозитория: **Settings** → **Pages**
+2. В разделе **Source** выберите **GitHub Actions**
+3. Workflow автоматически запустится при следующем push в `main`
+
+### Ручной запуск деплоя
+
+Вы можете запустить деплой вручную через вкладку **Actions** → выберите workflow **Deploy to GitHub Pages** → **Run workflow**
+
+После успешного деплоя приложение будет доступно по адресу:
+`https://matperez.github.io/prophet-song-interactive-map/`
