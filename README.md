@@ -2,19 +2,46 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Песнь Пророка: Интерактивная карта персонажей
 
-This contains everything you need to run your app locally.
+Интерактивная визуализация графа знаний романа "Песнь Пророка" Пола Линча. Исследуйте персонажей, события и трагические связи семьи Стэков в антиутопической Ирландии через динамическую сетевую визуализацию.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1J8CMcW3ctNn3BoZPd_nL_q1zA0k4NgBy
+## Возможности
 
-## Run Locally
+- **Интерактивный граф знаний** — визуализация связей между персонажами, событиями и группами
+- **Фильтрация по главам** — просмотр событий и персонажей по главам романа (1-9)
+- **Поиск** — быстрый поиск персонажей и событий
+- **Детальная информация** — боковая панель с описаниями, статусами и связями персонажей
+- **Визуальная категоризация** — цветовое кодирование по группам (семья, власти, друзья, события)
 
-**Prerequisites:**  Node.js
+## Технологии
 
+- **React 19** — UI библиотека
+- **D3.js** — визуализация графа и физическая симуляция
+- **TypeScript** — типизированный JavaScript
+- **Vite** — сборщик и dev-сервер
+- **Tailwind CSS** — стилизация
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Запуск локально
+
+**Требования:** Node.js
+
+1. Установите зависимости:
+   ```bash
+   npm install
+   ```
+
+2. Запустите приложение:
+   ```bash
+   npm run dev
+   ```
+
+3. Откройте браузер по адресу `http://localhost:3000`
+
+## Сборка для продакшена
+
+```bash
+npm run build
+```
+
+Собранные файлы будут в директории `dist/`.
