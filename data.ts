@@ -4,21 +4,21 @@ import { BookData } from './types';
 export const PROPHET_SONG_DATA: BookData = {
   nodes: [
     // --- Characters ---
-    { id: 'ailish', label: 'Айлиш Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7,8,9], description: 'Мать, жена и микробиолог, пытающаяся сохранить семью в распадающемся обществе.', status: 'escaped', details: 'Ее путь — это путь от отрицания к полному осознанию трагедии.' },
-    { id: 'larry', label: 'Ларри Стэк', type: 'character', group: 'family', chapter: [1], description: 'Муж Айлиш, профсоюзный лидер, чей арест запускает цепь событий.', status: 'missing', details: 'Пропал после задержания ГСНБ в самом начале книги.' },
-    { id: 'mark', label: 'Марк Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6], description: 'Старший сын, подросток, вынужденный скрываться от призыва.', status: 'missing', details: 'Ушел в сопротивление после месяцев жизни в подполье.' },
-    { id: 'molly', label: 'Молли Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7,8,9], description: 'Дочь-подросток, страдающая от депрессии и панических атак.', status: 'escaped', details: 'Символ потерянной юности в условиях диктатуры.' },
-    { id: 'bailey', label: 'Бейли Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7], description: 'Младший сын, чья жизнь трагически обрывается во время войны.', status: 'dead', details: 'Ранен осколком и замучен в переполненном госпитале.' },
-    { id: 'ben', label: 'Бен Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7,8,9], description: 'Младенец, чье присутствие напоминает Айлиш о хрупкости жизни.', status: 'escaped' },
-    { id: 'simon', label: 'Саймон', type: 'character', group: 'family', chapter: [1,2,3,5,6], description: 'Отец Айлиш, страдающий деменцией ученый.', status: 'missing', details: 'Олицетворяет старую Ирландию, разрушенную новым режимом.' },
-    { id: 'jean', label: 'Джин', type: 'character', group: 'family', chapter: [], description: 'Мать Айлиш, умерла до начала событий.' },
+    { id: 'ailish', label: 'Айлиш Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7,8,9], description: 'Мать, жена и микробиолог, пытающаяся сохранить семью в распадающемся обществе.', status: 'escaped', statusChangeChapter: 9, details: 'Ее путь — это путь от отрицания к полному осознанию трагедии.' },
+    { id: 'larry', label: 'Ларри Стэк', type: 'character', group: 'family', chapter: [1], description: 'Муж Айлиш, профсоюзный лидер, чей арест запускает цепь событий.', status: 'missing', statusChangeChapter: 1, details: 'Пропал после задержания ГСНБ в самом начале книги.' },
+    { id: 'mark', label: 'Марк Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6], description: 'Старший сын, подросток, вынужденный скрываться от призыва.', status: 'missing', statusChangeChapter: 4, details: 'Ушел в сопротивление после месяцев жизни в подполье.' },
+    { id: 'molly', label: 'Молли Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7,8,9], description: 'Дочь-подросток, страдающая от депрессии и панических атак.', status: 'escaped', statusChangeChapter: 9, details: 'Символ потерянной юности в условиях диктатуры.' },
+    { id: 'bailey', label: 'Бейли Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7], description: 'Младший сын, чья жизнь трагически обрывается во время войны.', status: 'dead', statusChangeChapter: 7, details: 'Ранен осколком и замучен в переполненном госпитале.' },
+    { id: 'ben', label: 'Бен Стэк', type: 'character', group: 'family', chapter: [1,2,3,4,5,6,7,8,9], description: 'Младенец, чье присутствие напоминает Айлиш о хрупкости жизни.', status: 'escaped', statusChangeChapter: 9 },
+    { id: 'simon', label: 'Саймон', type: 'character', group: 'family', chapter: [1,2,3,5,6], description: 'Отец Айлиш, страдающий деменцией ученый.', status: 'missing', statusChangeChapter: 6, details: 'Олицетворяет старую Ирландию, разрушенную новым режимом.' },
+    { id: 'jean', label: 'Джин', type: 'character', group: 'family', chapter: [], description: 'Мать Айлиш, умерла до начала событий.', status: 'dead', statusChangeChapter: 0 },
     { id: 'aine', label: 'Айне', type: 'character', group: 'family', chapter: [2,6], description: 'Сестра Айлиш, живущая в Канаде.', details: 'Голос разума извне, призывающий к бегству.' },
     { id: 'spencer', label: 'Спенсер', type: 'character', group: 'family', chapter: [2,6], description: 'Собака отца Айлиш, боксер темного окраса.' },
     { id: 'sirsha', label: 'Сирша', type: 'character', group: 'family', chapter: [3], description: 'Кузина Айлиш, невеста на свадьбе.' },
 
     // --- Friends and Colleagues ---
     { id: 'carol', label: 'Кэрол Секстон', type: 'character', group: 'friend', chapter: [1,2,3,4,5], description: 'Подруга Айлиш, жена арестованного коллеги Ларри.' },
-    { id: 'jim_sexton', label: 'Джим Секстон', type: 'character', group: 'friend', chapter: [1], description: 'Районный лидер профсоюза, муж Кэрол, арестован ГСНБ.', status: 'missing' },
+    { id: 'jim_sexton', label: 'Джим Секстон', type: 'character', group: 'friend', chapter: [1], description: 'Районный лидер профсоюза, муж Кэрол, арестован ГСНБ.', status: 'missing', statusChangeChapter: 1 },
     { id: 'michael_given', label: 'Майкл Гивен', type: 'character', group: 'support', chapter: [2], description: 'Профсоюзный адвокат, пытается помочь арестованным.' },
     { id: 'anne_devlin', label: 'Энн Девлин', type: 'character', group: 'support', chapter: [4,5], description: 'Адвокат, специализирующаяся на делах о незаконных арестах.' },
     { id: 'felsner', label: 'Пол Фелснер', type: 'character', group: 'authority', chapter: [1,2,3,4,5], description: 'Менеджер по работе с иностранными клиентами, член ПНЕ, увольняет Айлиш.', details: 'Под давлением ГСНБ увольняет Айлиш.' },
@@ -28,7 +28,7 @@ export const PROPHET_SONG_DATA: BookData = {
     { id: 'fintan', label: 'Финтан', type: 'character', group: 'friend', chapter: [2], description: 'Сын Рори О\'Коннора.' },
 
     // --- Colleagues ---
-    { id: 'rohit_singh', label: 'Рохит Сингх', type: 'character', group: 'colleague', chapter: [1,3,4], description: 'Коллега Айлиш, менеджер по работе с иностранными клиентами.', status: 'missing' },
+    { id: 'rohit_singh', label: 'Рохит Сингх', type: 'character', group: 'colleague', chapter: [1,3,4], description: 'Коллега Айлиш, менеджер по работе с иностранными клиентами.', status: 'missing', statusChangeChapter: 4 },
     { id: 'colm_perry', label: 'Колм Перри', type: 'character', group: 'colleague', chapter: [1,3], description: 'Коллега Айлиш, предупреждает об опасности.' },
     { id: 'alice_dili', label: 'Элис Дили', type: 'character', group: 'colleague', chapter: [1,3], description: 'Коллега Айлиш, уволена из компании.' },
     { id: 'mary_newton', label: 'Мэри Ньютон', type: 'character', group: 'colleague', chapter: [3], description: 'Коллега Айлиш по работе.' },

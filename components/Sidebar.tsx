@@ -6,18 +6,22 @@ interface SidebarProps {
   selectedNode: GraphNode | null;
   allNodes: GraphNode[];
   allLinks: GraphLink[];
+  selectedChapter: number | null;
   onClose: () => void;
   onNodeSelect: (id: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedNode, allNodes, allLinks, onClose, onNodeSelect }) => {
+const Sidebar: React.FC<SidebarProps> = ({ selectedNode, allNodes, allLinks, selectedChapter, onClose, onNodeSelect }) => {
   if (!selectedNode) return null;
 
   const getStatusColor = (status?: string) => {
     switch (status) {
       case 'dead': return 'text-red-600 bg-red-100/10 border-red-500/20';
+      case 'dead_before': return 'text-red-500 bg-red-100/10 border-red-500/20';
       case 'missing': return 'text-slate-400 bg-slate-100/10 border-slate-500/20';
       case 'escaped': return 'text-emerald-500 bg-emerald-100/10 border-emerald-500/20';
+      case 'active': return 'text-blue-500 bg-blue-100/10 border-blue-500/20';
+      case 'not_appeared': return 'text-slate-500 bg-slate-100/5 border-slate-600/20';
       default: return 'text-amber-500 bg-amber-100/10 border-amber-500/20';
     }
   };
@@ -25,12 +29,72 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode, allNodes, allLinks, onC
   const getStatusLabel = (status?: string) => {
     switch (status) {
       case 'dead': return 'Погиб(ла)';
+      case 'dead_before': return 'Мертв(а)';
       case 'missing': return 'Пропал(а) без вести';
       case 'escaped': return 'Бежал(а) из страны';
       case 'active': return 'Активен(на)';
+      case 'not_appeared': return 'Еще не упоминался';
       default: return 'Статус неизвестен';
     }
   };
+
+  // Функция для определения статуса персонажа в зависимости от выбранной главы
+  const getCharacterStatusForChapter = (node: GraphNode, chapter: number | null): string | undefined => {
+    if (node.type !== 'character') return node.status;
+    
+    // Проверяем, был ли персонаж упомянут как уже мертвый (умер до начала событий)
+    const isDeadBeforeEvents = node.status === 'dead' && node.statusChangeChapter === 0;
+    
+    // Если персонаж упомянут как уже мертвый, всегда показываем "Мертв"
+    if (isDeadBeforeEvents) {
+      return 'dead_before';
+    }
+    
+    // Если выбраны все главы, показываем финальный статус
+    if (chapter === null) {
+      return node.status;
+    }
+
+    // Определяем первую главу, где появляется персонаж
+    const firstChapter = Array.isArray(node.chapter) 
+      ? (node.chapter.length > 0 ? Math.min(...node.chapter) : Infinity)
+      : (node.chapter || Infinity);
+
+    // Если персонаж еще не упоминался в выбранной главе
+    if (firstChapter > chapter) {
+      return 'not_appeared';
+    }
+
+    // Если у персонажа нет финального статуса или он 'active', показываем 'active'
+    if (!node.status || node.status === 'active') {
+      return 'active';
+    }
+
+    // Если есть информация о том, в какой главе меняется статус
+    if (node.statusChangeChapter !== undefined) {
+      // Если статус уже изменился к этой главе
+      if (node.statusChangeChapter <= chapter) {
+        return node.status;
+      }
+      // Если статус еще не изменился
+      return 'active';
+    }
+
+    // Если нет информации о главе изменения статуса, используем эвристику:
+    // Если последняя глава персонажа <= выбранной главы, показываем финальный статус
+    const lastChapter = Array.isArray(node.chapter)
+      ? Math.max(...node.chapter)
+      : (node.chapter || 0);
+
+    if (lastChapter <= chapter) {
+      return node.status;
+    }
+
+    // Иначе персонаж еще активен
+    return 'active';
+  };
+
+  const currentStatus = getCharacterStatusForChapter(selectedNode, selectedChapter);
 
   // Find all connections and their metadata
   const connections = useMemo(() => {
@@ -78,11 +142,13 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode, allNodes, allLinks, onC
 
       <div className="flex-1 overflow-y-auto p-6 space-y-8 scrollbar-thin scrollbar-thumb-slate-700">
         {/* Status Section for Characters */}
-        {selectedNode.type === 'character' && selectedNode.status && (
+        {selectedNode.type === 'character' && currentStatus && (
           <section>
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">Текущий статус</span>
-            <div className={`px-3 py-2 rounded-lg border text-sm font-medium inline-block ${getStatusColor(selectedNode.status)}`}>
-              {getStatusLabel(selectedNode.status)}
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">
+              {selectedChapter === null ? 'Текущий статус' : `Статус в главе ${selectedChapter}`}
+            </span>
+            <div className={`px-3 py-2 rounded-lg border text-sm font-medium inline-block ${getStatusColor(currentStatus)}`}>
+              {getStatusLabel(currentStatus)}
             </div>
           </section>
         )}

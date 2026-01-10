@@ -79,6 +79,7 @@ const App: React.FC = () => {
         selectedNode={selectedNode} 
         allNodes={PROPHET_SONG_DATA.nodes}
         allLinks={PROPHET_SONG_DATA.links}
+        selectedChapter={selectedChapter}
         onClose={() => setSelectedNodeId(null)} 
         onNodeSelect={(id) => setSelectedNodeId(id)}
       />

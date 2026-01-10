@@ -9,6 +9,7 @@ export interface GraphNode {
   description?: string;
   chapter?: number | number[];
   status?: 'active' | 'missing' | 'dead' | 'escaped';
+  statusChangeChapter?: number; // Глава, в которой персонаж меняет статус (умирает, пропадает, сбегает)
   details?: string;
 }
 
